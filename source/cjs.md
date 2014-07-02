@@ -13,11 +13,11 @@ JavaScript Next.
 
 ```js
 var bytes = require("bytes");
-var iconv = require("iconv-lite");
+var getCodec = require("iconv-lite").getCodec;
 
 module.exports = function(stream, options, done) {
   // ...
-}
+};
 
 // ...
 
@@ -25,7 +25,7 @@ function getDecoder(encoding) {
   if (!encoding) return null;
 
   try {
-    return iconv.getCodec(encoding).decoder()
+    return getCodec(encoding).decoder();
   } catch(e) {
     // ...
   }
@@ -48,7 +48,7 @@ function getDecoder (encoding) {
   if (!encoding) return null;
 
   try {
-    return getCodec(encoding).decoder()
+    return getCodec(encoding).decoder();
   } catch(e) {
     // ...
   }
@@ -65,20 +65,20 @@ function getDecoder (encoding) {
 var cookies = require('./lib/cookies')
   , copy = require('./lib/copy')
   , Request = require('./request')
-  , util = require('util')
+  , _extend = require('util')._extend
   ;
 
 function initParams(uri, options, callback) {
   // ...
-  opts = util._extend({}, options);
+  opts = _extend({}, options);
   // ...
 }
 
 // ...
 
-function request (uri, options, callback) {
+function request(uri, options, callback) {
   // ...
-  opts = util._extend({}, options);
+  opts = _extend({}, options);
   // ...
 }
 
@@ -89,21 +89,21 @@ request.Request = Request;
 request.debug = process.env.NODE_DEBUG &&
   /request/.test(process.env.NODE_DEBUG);
 
-request.initParams = initParams
+request.initParams = initParams;
 
 request.defaults = function (options, requester) {
   // ...
 
-  de.get = def(request.get)
-  de.patch = def(request.patch)
-  de.post = def(request.post)
-  de.put = def(request.put)
-  de.head = def(request.head)
-  de.del = def(request.del)
-  de.cookie = def(request.cookie)
-  de.jar = request.jar
+  de.get = def(request.get);
+  de.patch = def(request.patch);
+  de.post = def(request.post);
+  de.put = def(request.put);
+  de.head = def(request.head);
+  de.del = def(request.del);
+  de.cookie = def(request.cookie);
+  de.jar = request.jar;
 
-  return de
+  return de;
 }
 
 // ...
@@ -111,40 +111,40 @@ request.defaults = function (options, requester) {
 request.forever = function (agentOptions, optionsArg) {
   // ...
 
-  return request.defaults(options)
-}
+  return request.defaults(options);
+};
 
 request.get = function (uri, options, callback) {
   // ...
-}
+};
 
 request.post = function (uri, options, callback) {
   // ...
-}
+};
 
 request.put = function (uri, options, callback) {
   // ...
-}
+};
 
 request.patch = function (uri, options, callback) {
   // ...
-}
+};
 
 request.head = function (uri, options, callback) {
   // ...
-}
+};
 
 request.del = function (uri, options, callback) {
   // ...
-}
+};
 
 request.jar = function (uri, options, callback) {
   // ...
-}
+};
 
 request.cookie = function (uri, options, callback) {
   // ...
-}
+};
 ```
 
 ```js
@@ -175,21 +175,21 @@ export { Request };
 export var debug = process.env.NODE_DEBUG &&
   /request/.test(process.env.NODE_DEBUG);
 
-export var initParams = initParams
+export var initParams = initParams;
 
 export function defaults (options, requester) {
   // ...
 
-  de.get = def(get)
-  de.patch = def(patch)
-  de.post = def(post)
-  de.put = def(put)
-  de.head = def(head)
-  de.del = def(del)
-  de.cookie = def(cookie)
-  de.jar = jar
+  de.get = def(get);
+  de.patch = def(patch);
+  de.post = def(post);
+  de.put = def(put);
+  de.head = def(head);
+  de.del = def(del);
+  de.cookie = def(cookie);
+  de.jar = jar;
 
-  return de
+  return de;
 }
 
 // ...
@@ -197,7 +197,7 @@ export function defaults (options, requester) {
 export function forever (agentOptions, optionsArg) {
   // ...
 
-  return defaults(options)
+  return defaults(options);
 }
 
 export function get (uri, options, callback) {
@@ -243,16 +243,16 @@ diff](https://gist.github.com/wycats/4353447a213d3060e23f/revisions)
  * Module dependencies
  */
 
-var bytes = require('bytes')
-var read = require('./read')
-var typer = require('media-typer')
-var typeis = require('type-is')
+var bytes = require('bytes');
+var read = require('./read');
+var typer = require('media-typer');
+var typeis = require('type-is');
 
 /**
  * Module exports
  */
 
-module.exports = json
+module.exports = json;
 
 // ...
 
@@ -302,7 +302,7 @@ function mkdirP (p, opts, f, made) {
   // ...
   mkdirP(path.dirname(p), opts, function (er, made) {
     // ...
-  })
+  });
   // ...
 }
 
@@ -314,7 +314,7 @@ mkdirP.sync = function sync (p, opts, made) {
   // ...
   made = sync(path.dirname(p), opts, made);
   // ...
-}
+};
 ```
 
 ```js
@@ -330,7 +330,7 @@ export default function mkdirP (p, opts, f, made) {
   // ...
   mkdirP(dirname(p), opts, function (er, made) {
     // ...
-  })
+  });
   // ...
 }
 
